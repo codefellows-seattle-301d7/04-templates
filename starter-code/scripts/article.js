@@ -26,7 +26,12 @@ Article.prototype.toHtml = function() {
   // TODO: Use the function that Handlebars gave you to return your filled-in
   //       html template for THIS article.
   return template(this);
-  
+};
+
+Article.prototype.filterHtml = function(id) {
+  var source= $('#'+id).html();
+  var template = Handlebars.compile(source);
+  return template(this);
 };
 
 ourLocalData.sort(function(a,b) {
@@ -39,4 +44,12 @@ ourLocalData.forEach(function(ele) {
 
 articles.forEach(function(a){
   $('#articles').append(a.toHtml());
+});
+articles.forEach(function(a){
+  $('#author-filter').append(a.filterHtml('author-filter-template'));
+});
+articles.forEach(function(a){
+  if ($('#category-filter option[value="' + a.category + '"]').length === 0) {
+    $('#category-filter').append(a.filterHtml('category-filter-template'));
+  }
 });
