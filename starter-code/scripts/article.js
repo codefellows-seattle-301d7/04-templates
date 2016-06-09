@@ -25,6 +25,8 @@ Article.prototype.toHtml = function() {
 
   // TODO: Use the function that Handlebars gave you to return your filled-in
   //       html template for THIS article.
+  return template(this);
+  
 };
 
 ourLocalData.sort(function(a,b) {
