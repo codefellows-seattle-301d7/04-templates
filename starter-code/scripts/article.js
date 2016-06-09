@@ -7,12 +7,15 @@ function Article (opts) {
   this.category = opts.category;
   this.body = opts.body;
   this.publishedOn = opts.publishedOn;
+
 }
 
 Article.prototype.toHtml = function() {
   // TODO: Use handlebars to render your articles!
   //       - Select your template from the DOM.
   //       - Now "compile" your template with Handlebars.
+  var source = $('#ipsumTemplate').html();
+  var template = Handlebars.compile(source);
 
   // DONE: If your template will use properties that aren't on the object yet, add them.
   //   Since your template can't hold any JS logic, we need to execute the logic here.
@@ -24,6 +27,7 @@ Article.prototype.toHtml = function() {
 
   // TODO: Use the function that Handlebars gave you to return your filled-in
   //       html template for THIS article.
+  return template(this);
 };
 
 ourLocalData.sort(function(a,b) {
